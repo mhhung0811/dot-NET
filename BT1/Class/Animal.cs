@@ -36,13 +36,68 @@ namespace BT1.Class
             Random random = new Random();
             id = random.Next(0, 65536);
             type = "COW";
-            sound = "Boo, boo, boo";
+            sound = "Moo, moo, moo";
             milk = 0;
         }
 
         public override int GiveBirth()
         {
-            return base.GiveBirth();
+            Random random = new Random();
+            return random.Next(0, 2);
+        }
+
+        public override int Milking()
+        {
+            Random random = new Random();
+            return random.Next(0, 20);
+        }
+    }
+
+    internal class Sheep : Animal
+    {
+        public Sheep()
+        {
+            Random random = new Random();
+            id = random.Next(0, 65536);
+            type = "SHEEP";
+            sound = "Sheep, sheep, sheep";
+            milk = 0;
+        }
+
+        public override int GiveBirth()
+        {
+            Random random = new Random();
+            return random.Next(0, 4);
+        }
+
+        public override int Milking()
+        {
+            Random random = new Random();
+            return random.Next(0, 5);
+        }
+    }
+
+    internal class Goat : Animal
+    {
+        public Goat()
+        {
+            Random random = new Random();
+            id = random.Next(0, 65536);
+            type = "GOAT";
+            sound = "GOAT, GOAT, GOAT";
+            milk = 0;
+        }
+
+        public override int GiveBirth()
+        {
+            Random random = new Random();
+            return random.Next(0, 6);
+        }
+
+        public override int Milking()
+        {
+            Random random = new Random();
+            return random.Next(0, 10);
         }
     }
 }
