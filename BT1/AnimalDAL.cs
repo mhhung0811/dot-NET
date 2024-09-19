@@ -11,7 +11,7 @@ namespace BT1
 {
     internal class AnimalDAL
     {
-        private string connectionString = "Data Source=HP_ADMIN_H;Initial Catalog=FARMMANAGEMENT;Integrated Security=True";
+        private string connectionString = "Put connectionString here!";
 
         public List<Animal> GetAnimals()
         {

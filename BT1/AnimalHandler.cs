@@ -68,20 +68,6 @@ namespace BT1
 
             foreach (Animal animal in animals)
             {
-                //switch(animal.type)
-                //{
-                //    case "COW":
-                //        ((Cow)animal).Milking();
-                //        break;
-                //    case "SHEEP":
-                //        ((Sheep)animal).Milking();
-                //        break;
-                //    case "GOAT":
-                //        ((Goat)animal).Milking();
-                //        break;
-                //    default: 
-                //        break;
-                //}
                 animal.Milking();
                 animalDAL.UpdateAnimal(animal);
             }
