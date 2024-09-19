@@ -61,5 +61,72 @@ namespace BT1
             res.Add(goats);
             return res;
         }
+
+        public void Milking()
+        {
+            List<Animal> animals = animalDAL.GetAnimals();
+
+            foreach (Animal animal in animals)
+            {
+                //switch(animal.type)
+                //{
+                //    case "COW":
+                //        ((Cow)animal).Milking();
+                //        break;
+                //    case "SHEEP":
+                //        ((Sheep)animal).Milking();
+                //        break;
+                //    case "GOAT":
+                //        ((Goat)animal).Milking();
+                //        break;
+                //    default: 
+                //        break;
+                //}
+                animal.Milking();
+                animalDAL.UpdateAnimal(animal);
+            }
+        }
+
+        public List<int> Born()
+        {
+            List<Animal> animals = animalDAL.GetAnimals();
+            List<int> res = new List<int>();
+            res.Add(0);
+            res.Add(0);
+            res.Add(0);
+
+            foreach (Animal animal in animals)
+            {
+                switch (animal.type)
+                {
+                    case "COW":
+                        res[0] += animal.GiveBirth();
+                        break;
+                    case "SHEEP":
+                        res[1] += animal.GiveBirth();
+                        break;
+                    case "GOAT":
+                        res[2] += animal.GiveBirth();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            for (int i = 0; i < res[0]; i++)
+            {
+                Console.WriteLine("work");
+                animalDAL.AddAnimal(new Cow());
+            }
+            for (int i = 0; i < res[1]; i++)
+            {
+                animalDAL.AddAnimal(new Sheep());
+            }
+            for (int i = 0; i < res[0]; i++)
+            {
+                animalDAL.AddAnimal(new Goat());
+            }
+            return res;
+        }
     }
 }

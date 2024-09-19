@@ -48,12 +48,14 @@ namespace BT1
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            animalHandler.Milking();
+            MessageBox.Show("Milking");
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            List<int> ints = animalHandler.Born();
+            MessageBox.Show("Cow born " + ints[0] + ", Sheep born " + ints[1] + ", Goat born " + ints[2] + ".");
         }
     }
 }

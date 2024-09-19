@@ -24,17 +24,18 @@ namespace BT1.Class
             Console.WriteLine(sound);
         }
 
+        public virtual void MakeSound() { Console.WriteLine(sound); }
+
         public virtual int GiveBirth() { return 0; }
 
-        public virtual int Milking() { return 0; }
+        public virtual float Milking() { return 0; }
     }
 
     internal class Cow : Animal
     {
         public Cow() 
-        {
-            Random random = new Random();
-            id = "COW" + random.Next(0, 65536).ToString();
+        {            
+            id = "COW" + Guid.NewGuid().GetHashCode().ToString();
             type = "COW";
             sound = "Moo, moo, moo";
             milk = 0;
@@ -46,10 +47,12 @@ namespace BT1.Class
             return random.Next(0, 2);
         }
 
-        public override int Milking()
+        public override float Milking()
         {
             Random random = new Random();
-            return random.Next(0, 20);
+            Console.WriteLine("Cow milk");
+            milk = random.Next(0, 20);
+            return milk;
         }
     }
 
@@ -57,8 +60,7 @@ namespace BT1.Class
     {
         public Sheep()
         {
-            Random random = new Random();
-            id = "SHEEP" + random.Next(0, 65536).ToString();
+            id = "SHEEP" + Guid.NewGuid().GetHashCode().ToString();
             type = "SHEEP";
             sound = "Sheep, sheep, sheep";
             milk = 0;
@@ -70,10 +72,11 @@ namespace BT1.Class
             return random.Next(0, 4);
         }
 
-        public override int Milking()
+        public override float Milking()
         {
             Random random = new Random();
-            return random.Next(0, 5);
+            milk = random.Next(0, 5);
+            return milk;
         }
     }
 
@@ -81,8 +84,7 @@ namespace BT1.Class
     {
         public Goat()
         {
-            Random random = new Random();
-            id = "GOAT" + random.Next(0, 65536).ToString();
+            id = "GOAT" + Guid.NewGuid().GetHashCode().ToString();
             type = "GOAT";
             sound = "GOAT, GOAT, GOAT";
             milk = 0;
@@ -94,10 +96,11 @@ namespace BT1.Class
             return random.Next(0, 6);
         }
 
-        public override int Milking()
+        public override float Milking()
         {
             Random random = new Random();
-            return random.Next(0, 10);
+            milk = random.Next(0, 10);
+            return milk;
         }
     }
 }

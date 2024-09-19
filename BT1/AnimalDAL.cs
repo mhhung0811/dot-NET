@@ -28,13 +28,13 @@ namespace BT1
                     Animal animal;
                     switch (reader["type"].ToString())
                     {
-                        case "Cow":
+                        case "COW":
                             animal = new Cow();
                             break;
-                        case "Sheep":
+                        case "SHEEP":
                             animal = new Sheep();
                             break;
-                        case "Goat":
+                        case "GOAT":
                             animal = new Goat();
                             break;
                         default:
@@ -46,7 +46,6 @@ namespace BT1
                     animal.sound = reader["sound"].ToString();
                     animal.milk = float.Parse(reader["milk"].ToString());
                     animals.Add(animal);
-                    Debug.WriteLine(animal.type);
                 }
             }
             return animals;
@@ -74,6 +73,37 @@ namespace BT1
                     cmd.Parameters.AddWithValue("@milk", animal.milk);
 
                     cmd.ExecuteNonQuery(); // Execute the INSERT statement
+                }
+            }
+        }
+
+        public void UpdateAnimal(Animal animal)
+        {
+            // Validate input data (optional but recommended)
+            if (animal == null || string.IsNullOrEmpty(animal.id))
+            {
+                throw new ArgumentException("Animal object or its ID cannot be null or empty");
+            }
+
+            // Use a parameterized query to prevent SQL injection attacks
+            string query = "UPDATE animal SET type = @type, sound = @sound, milk = @milk WHERE id = @id";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", animal.id);
+                    cmd.Parameters.AddWithValue("@type", animal.type);
+                    cmd.Parameters.AddWithValue("@sound", animal.sound);
+                    cmd.Parameters.AddWithValue("@milk", animal.milk);
+
+                    int rowsAffected = cmd.ExecuteNonQuery(); // Execute the UPDATE statement
+
+                    if (rowsAffected == 0)
+                    {
+                        Console.WriteLine($"Warning: No animal with ID '{animal.id}' was found to update.");
+                    }
                 }
             }
         }
