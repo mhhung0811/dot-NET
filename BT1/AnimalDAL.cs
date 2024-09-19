@@ -18,7 +18,7 @@ namespace BT1
             List<Animal> animals = new List<Animal>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM ANIMALS";
+                string query = "SELECT * FROM animal";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -42,13 +42,40 @@ namespace BT1
                             break;
                     }
                     animal.id = reader["id"].ToString();
-                    animal.type = reader["ANIMALTYPE"].ToString();
-                    animal.sound = reader["SOUND"].ToString();
+                    animal.type = reader["type"].ToString();
+                    animal.sound = reader["sound"].ToString();
+                    animal.milk = float.Parse(reader["milk"].ToString());
                     animals.Add(animal);
                     Debug.WriteLine(animal.type);
                 }
             }
             return animals;
+        }
+
+        public void AddAnimal(Animal animal)
+        {
+            // Validate input data (optional but recommended)
+            if (animal == null)
+            {
+                throw new ArgumentNullException(nameof(animal), "Animal cannot be null");
+            }
+
+            // Use a parameterized query to prevent SQL injection attacks
+            string query = "INSERT INTO animal (id, type, sound, milk) VALUES (@id, @type, @sound, @milk)";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id",animal.id);
+                    cmd.Parameters.AddWithValue("@type", animal.type);
+                    cmd.Parameters.AddWithValue("@sound", animal.sound);
+                    cmd.Parameters.AddWithValue("@milk", animal.milk);
+
+                    cmd.ExecuteNonQuery(); // Execute the INSERT statement
+                }
+            }
         }
     }
 }

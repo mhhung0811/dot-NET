@@ -10,8 +10,6 @@ namespace BT1.DataObject
     {
         public string Type { get; set; }
         public int CurrentAmount { get; set; }
-        public int TotalMilk { get; set; }
-        public int TotalGiveBirth { get; set; }
-        public int TotalAmount { get; set; }
+        public float TotalMilk { get; set; }
     }
 }

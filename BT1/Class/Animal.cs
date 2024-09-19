@@ -34,7 +34,7 @@ namespace BT1.Class
         public Cow() 
         {
             Random random = new Random();
-            id = random.Next(0, 65536).ToString();
+            id = "COW" + random.Next(0, 65536).ToString();
             type = "COW";
             sound = "Moo, moo, moo";
             milk = 0;
@@ -58,7 +58,7 @@ namespace BT1.Class
         public Sheep()
         {
             Random random = new Random();
-            id = random.Next(0, 65536).ToString();
+            id = "SHEEP" + random.Next(0, 65536).ToString();
             type = "SHEEP";
             sound = "Sheep, sheep, sheep";
             milk = 0;
@@ -82,7 +82,7 @@ namespace BT1.Class
         public Goat()
         {
             Random random = new Random();
-            id = random.Next(0, 65536).ToString();
+            id = "GOAT" + random.Next(0, 65536).ToString();
             type = "GOAT";
             sound = "GOAT, GOAT, GOAT";
             milk = 0;
