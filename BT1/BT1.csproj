@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimalDAL.cs" />
     <Compile Include="Class\Animal.cs" />
+    <Compile Include="DataObject\GridDO.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
